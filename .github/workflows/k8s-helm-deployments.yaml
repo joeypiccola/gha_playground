@@ -19,6 +19,9 @@ jobs:
       matrix:
         environment: ["dev", "prod"]
         region: ["eastus", "westus"]
+        include:
+          - chart: external-secrets-operator
+          - chart: octopus-worker
     runs-on: ubuntu-latest
     environment: ${{ matrix.environment }}
     steps:
