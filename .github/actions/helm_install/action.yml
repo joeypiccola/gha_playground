@@ -1,0 +1,31 @@
+name: "Helm upgrade --install"
+description: Run Helm upgrade install
+
+inputs:
+  namespace:
+    description: ""
+    required: true
+  version:
+    description: ""
+    required: true
+  chart_name:
+    description: ""
+    required: true
+  chart_source :
+    description: ""
+    required: true
+  directory :
+    description: ""
+    required: true
+
+runs:
+  using: composite
+  steps:
+    - name: Checkout code
+      uses: actions/checkout@v3
+
+    - name: Deploy external-secrets-operator
+      shell: bash
+      run: |
+        cat values.yml
+      working-directory: k8s-helm-deployments/${{ inputs.directory }}
