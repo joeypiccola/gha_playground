@@ -1,0 +1,41 @@
+name: Kubernetes Helm Deployments
+
+on:
+  pull_request:
+    paths:
+      - '.github/workflows/k8s-helm-deployments.yml'
+      - 'k8s-helm-deployments/**'
+  push:
+    branches:
+      - main
+    paths:
+      - '.github/workflows/k8s-helm-deployments.yaml'
+      - 'k8s-helm-deployments/**'
+
+jobs:
+  k8s-helm-deployments:
+    name: k8s helm deploy (${{ matrix.environment }} ${{ matrix.region }})
+    strategy:
+      matrix:
+        environment: ["dev", "prod"]
+        region: ["eastus", "westus"]
+    runs-on: ubuntu-latest
+    environment: ${{ matrix.environment }}
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Get AKS ${{ matrix.environment }} ${{ matrix.region }}
+        run: |
+          echo ${{ matrix.environment }}
+          echo ${{ matrix.region }}
+
+      - name: Helm install external-secrets-operator
+        uses: ./.github/actions/helm_install
+        with:
+          chart_name: external-secrets
+          chart_source: https://charts.external-secrets.io
+          directory: external-secrets
+          namespace: external-secrets
+          tf_actions_working_dir: external-secrets-operator
+          version: 0.8.2
