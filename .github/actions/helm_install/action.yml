@@ -13,7 +13,10 @@ inputs:
     required: true
   chart_source :
     description: ""
-    required: false
+    required: true
+  directory :
+    description: ""
+    required: true
 
 runs:
   using: composite
