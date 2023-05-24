@@ -35,7 +35,6 @@ jobs:
         with:
           chart_name: external-secrets
           chart_source: https://charts.external-secrets.io
-          directory: external-secrets
+          directory: external-secrets-operator
           namespace: external-secrets
-          tf_actions_working_dir: external-secrets-operator
           version: 0.8.2
