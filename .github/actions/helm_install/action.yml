@@ -20,6 +20,7 @@ runs:
   steps:
 
     - name: Deploy external-secrets-operator
+      shell: bash
       run: |
         cat values.yaml
       working-directory: k8s-helm-deployments/${{ inputs.directory }}
