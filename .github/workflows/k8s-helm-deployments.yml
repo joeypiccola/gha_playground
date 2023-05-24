@@ -38,3 +38,12 @@ jobs:
           directory: external-secrets-operator
           namespace: external-secrets
           version: 0.8.2
+
+      - name: Helm install traefik
+        uses: ./.github/actions/helm_install
+        with:
+          chart_name: traefik
+          chart_source: https://traefik.github.io/charts
+          directory: traefik
+          namespace: traefik
+          version: 23.0.1
