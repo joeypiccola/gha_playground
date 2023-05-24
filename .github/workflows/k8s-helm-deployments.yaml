@@ -14,7 +14,7 @@ on:
 
 jobs:
   k8s-helm-deployments:
-    name: Kubernetes Helm Deployments (${{ matrix.environment }}/{{ matrix.region }})
+    name: Kubernetes Helm Deployments (${{ matrix.environment }}/${{ matrix.region }})
     strategy:
       matrix:
         environment: ["dev", "prod"]
@@ -22,7 +22,7 @@ jobs:
     runs-on: ubuntu-latest
     environment: ${{ matrix.environment }}
     steps:
-      - name: Get name of AKS in ${{ matrix.environment }} {{ matrix.region }}
+      - name: Get name of AKS in ${{ matrix.environment }} ${{ matrix.region }}
         run: |
           echo ${{ matrix.environment }}
           echo ${{ matrix.region }}
